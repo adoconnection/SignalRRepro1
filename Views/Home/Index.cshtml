@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<html>
+<head>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+</head>
+<body>
+<script>
+
+    window.onload = function()
+    {
+        var connection = new signalR.HubConnectionBuilder()
+            .withUrl("/chatHub")
+            .build();
+
+        connection.start().then(function ()
+        {
+
+            connection.invoke('send', { test1: 'aaa', test2: 2 });
+
+        });;
+        
+    }
+
+</script>
+</body>
+</html>
